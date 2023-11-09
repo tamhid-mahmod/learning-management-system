@@ -101,7 +101,7 @@ export const ChaptersList = ({
                           chapter.isPublished && "bg-sky-700"
                         )}
                       >
-                        {chapter.isPublished ? "Publised" : "Draft"}
+                        {chapter.isPublished ? "Published" : "Draft"}
                       </Badge>
 
                       <Pencil
