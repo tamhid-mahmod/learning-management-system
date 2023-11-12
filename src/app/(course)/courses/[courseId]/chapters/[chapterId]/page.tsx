@@ -6,9 +6,10 @@ import { getChapter } from "@/actions/get-chapter";
 
 import { Banner } from "@/components/banner";
 import { Preview } from "@/components/preview";
+import { Separator } from "@/components/ui/separator";
 import { VideoPlayer } from "./_components/video-player";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
-import { Separator } from "@/components/ui/separator";
+import { CourseProgressButton } from "./_components/course-progress-button";
 
 const ChapterIdPage = async ({
   params,
@@ -40,7 +41,7 @@ const ChapterIdPage = async ({
   return (
     <div>
       {userProgress?.isCompleted && (
-        <Banner variant="success" label="You already complete this chapter." />
+        <Banner variant="success" label="You already completed this chapter." />
       )}
 
       {isLocked && (
@@ -68,7 +69,12 @@ const ChapterIdPage = async ({
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
 
             {purchase ? (
-              <div>{/* TODO: Add course progress button */}</div>
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+              />
             ) : (
               <CourseEnrollButton
                 courseId={params.courseId}
